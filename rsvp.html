@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RSVP · Cecily &amp; Atticus</title>
+  <meta name="description" content="Please RSVP to Cecily & Atticus's wedding on 10th December 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital@0;1&family=Dawning+of+a+New+Day&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="nav-inner nav-inner-home">
+      <a class="brand" href="index.html">C<span>&amp;</span>A</a>
+    </div>
+  </header>
+
+  <section class="page-banner">
+    <h1 class="script">Please RSVP</h1>
+    <p>We&rsquo;d be grateful for your reply by <strong>1st October 2026</strong></p>
+  </section>
+
+  <section class="section bg-cream" style="padding-bottom:1.25rem">
+    <div class="inner">
+
+      <div class="rsvp-badge reveal">
+        <span class="script">RSVP</span>
+      </div>
+
+      <!-- =====================================================
+           FORMSPREE SETUP
+           Replace YOUR_FORM_ID below with your real Formspree
+           endpoint (https://formspree.io → New form → copy ID).
+           Until then the form shows a success message in demo mode.
+           ===================================================== -->
+      <form id="rsvp-form" class="form reveal"
+            action="https://formspree.io/f/YOUR_FORM_ID"
+            method="POST">
+
+        <div class="field">
+          <label for="guest1">Guest Name 1 <span class="req">*</span></label>
+          <input type="text" id="guest1" name="guest_name_1" required placeholder="e.g. Jane Smith" />
+        </div>
+
+        <div class="field">
+          <label for="guest2">Guest Name 2</label>
+          <input type="text" id="guest2" name="guest_name_2" placeholder="e.g. John Smith (if applicable)" />
+        </div>
+
+        <div class="field">
+          <label for="email">Email address <span class="req">*</span></label>
+          <input type="email" id="email" name="email" required placeholder="you@example.com" />
+        </div>
+
+        <div class="field">
+          <label>Will you be able to join us at our wedding? <span class="req">*</span></label>
+          <div class="radio-row">
+            <label class="radio-pill">
+              <input type="radio" name="attending" value="Joyfully Accept" required />
+              <span>Joyfully Accept</span>
+            </label>
+            <label class="radio-pill">
+              <input type="radio" name="attending" value="Regretfully Decline" />
+              <span>Regretfully Decline</span>
+            </label>
+          </div>
+        </div>
+
+        <div id="attending-extra">
+          <div class="field">
+            <label>
+              Would you like on-site accommodation? <span class="req">*</span>
+              <span class="field-hint">If so, we&rsquo;ll be in touch with the best option for your party.</span>
+            </label>
+            <div class="radio-row">
+              <label class="radio-pill">
+                <input type="radio" name="accommodation" value="Yes" />
+                <span>Yes</span>
+              </label>
+              <label class="radio-pill">
+                <input type="radio" name="accommodation" value="No" />
+                <span>No</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="dietary">Do you have any dietary restrictions / allergies? <span class="req">*</span></label>
+            <input type="text" id="dietary" name="dietary" placeholder="e.g. vegetarian, nut allergy, or &lsquo;none&rsquo;" />
+          </div>
+
+          <div class="field">
+            <label for="message">A message for the couple</label>
+            <textarea id="message" name="message" placeholder="Anything you&rsquo;d like to tell us…"></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Send RSVP</button>
+        <p class="form-note">Having trouble? Email us at <a href="mailto:cecandatti@gmail.com">cecandatti@gmail.com</a></p>
+      </form>
+
+      <!-- Success state -->
+      <div id="rsvp-success" class="form-success reveal">
+        <p class="script">Thank you!</p>
+        <div class="rule"></div>
+        <p>Your RSVP has been received. We can&rsquo;t wait to celebrate with you.</p>
+        <p style="margin-top:1.5rem"><a class="btn btn-outline" href="travel.html">Travel &amp; Stay</a></p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPLORE -->
+  <section class="section bg-cream centered" style="padding-top:0.75rem">
+    <div class="inner">
+      <p class="eyebrow" style="text-align:center;padding-left:0">Explore</p>
+      <div class="hero-actions">
+        <a class="btn btn-outline" href="index.html">Home</a>
+        <a class="btn btn-outline" href="schedule.html">The Big Day</a>
+        <a class="btn btn-outline" href="travel.html">Travel &amp; Stay</a>
+        <a class="btn btn-outline" href="faq.html">Q&amp;A</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <a class="footer-mono" href="index.html">C<span>&amp;</span>A</a>
+    <p class="footer-links">
+      <a href="rsvp.html">RSVP</a> &middot;
+      <a href="schedule.html">The Big Day</a> &middot;
+      <a href="travel.html">Travel &amp; Stay</a> &middot;
+      <a href="faq.html">Q&amp;A</a>
+    </p>
+  </footer>
+
+  <script src="js/main.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,622 @@
+/* ============================================================
+   Cecily & Atticus — Wedding
+   Palette & type drawn from the invitation stationery.
+   ============================================================ */
+
+:root {
+  /* Colours */
+  --sage:        #4c4f20;   /* deep olive — the invitation's base green */
+  --sage-light:  #bdd6b1;
+  --sage-deep:   #3d4019;
+  --olive:       #565a2b;
+  --olive-deep:  #43461f;
+  --cream:       #f6f2e7;
+  --ivory:       #fbf9f1;
+  --burgundy:    #75262f;
+  --burgundy-deep:#581d24;
+  --ink:         #2c2e18;
+
+  /* Type */
+  --font-script: 'Dawning of a New Day', cursive;
+  --font-serif:  'Cormorant Garamond', Georgia, serif;
+  --font-body:   'EB Garamond', Georgia, serif;
+
+  /* Layout */
+  --maxw: 1100px;
+  --header-h: 76px;
+
+  /* Soft cream halo to keep header text crisp over the rose pattern */
+  --text-halo: 0 0 2px rgba(246, 242, 231, 1),
+               0 0 7px rgba(246, 242, 231, .96),
+               0 0 13px rgba(246, 242, 231, .9);
+
+  /* Burgundy pinstripe used as a decorative rule, echoing the invitation */
+  --pinstripe: repeating-linear-gradient(
+      90deg,
+      var(--burgundy) 0 3px,
+      transparent 3px 9px
+  );
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--sage);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--burgundy); }
+
+/* ---------- Typographic scale ---------- */
+h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; line-height: 1.1; margin: 0 0 .4em; }
+
+.script {
+  font-family: var(--font-script);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: .01em;
+}
+
+.eyebrow {
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: .42em;
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--olive);
+  margin: 0 0 1rem;
+  padding-left: .42em;
+}
+
+/* ---------- Header / nav ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  /* Rose toile pattern washed with cream so the monogram + nav stay legible.
+     Falls back to plain cream if the image is missing. */
+  background-color: var(--cream);
+  background-image:
+    linear-gradient(rgba(246, 242, 231, .40), rgba(246, 242, 231, .40)),
+    url(../images/header-roses.png);
+  background-size: auto, 300px auto;
+  background-repeat: no-repeat, repeat;
+  background-position: center, center;
+  border-bottom: 1px solid rgba(86, 90, 43, .35);
+}
+.nav-inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  height: var(--header-h);
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand {
+  font-family: var(--font-script);
+  font-size: 2.1rem;
+  color: var(--olive);
+  text-decoration: none;
+  line-height: 1;
+  text-shadow: var(--text-halo);
+}
+.brand span { color: var(--burgundy); }
+
+/* Home banner carries only the monogram — centre it */
+.nav-inner-home { justify-content: center; }
+
+/* Inline nav links (top-right) at all widths — replaces the hamburger */
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: .5rem 1.4rem;
+}
+.site-nav a {
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--olive);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1.5px solid transparent;
+  transition: color .2s, border-color .2s;
+  text-shadow: var(--text-halo);
+  white-space: nowrap;
+}
+.site-nav a:hover { color: var(--burgundy); }
+.site-nav a.active { color: var(--burgundy); border-bottom-color: var(--burgundy); }
+
+.nav-toggle { display: none; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font-size: .82rem;
+  font-weight: 600;
+  padding: .95rem 2.2rem;
+  text-decoration: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background .2s, color .2s, transform .15s;
+}
+.btn-primary { background: var(--olive); color: var(--cream); border: 1px solid var(--olive); }
+.btn-primary:hover { background: var(--olive-deep); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--olive); border: 1px solid var(--olive); }
+.btn-outline:hover { background: var(--olive); color: var(--cream); }
+
+/* ---------- Generic section ---------- */
+.section { padding: 3.5rem 1.5rem; }
+.section .inner { max-width: var(--maxw); margin: 0 auto; }
+.section-narrow .inner { max-width: 760px; }
+.bg-cream  { background: var(--cream); }
+.bg-ivory  { background: var(--ivory); }
+.bg-sage   { background: var(--sage); }
+.bg-olive  { background: var(--olive); color: var(--cream); }
+.bg-olive .eyebrow { color: var(--sage-light); }
+.bg-olive h1, .bg-olive h2, .bg-olive h3 { color: var(--cream); }
+
+.centered { text-align: center; }
+
+/* Dot dividers removed site-wide */
+.rule { display: none; }
+
+/* ============================================================
+   PAGE HERO (home)
+   ============================================================ */
+.hero {
+  background: var(--sage);
+  padding: 3rem 1.5rem 3.25rem;
+}
+.hero-inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.hero-copy { text-align: center; }
+.hero-copy .invite-label {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0 0 .2rem;
+}
+.hero-names {
+  font-family: var(--font-script);
+  font-size: clamp(3.4rem, 8vw, 6rem);
+  color: #fff;
+  margin: .2rem 0 1.5rem;
+  text-shadow: 0 1px 10px rgba(44, 46, 24, .22);
+}
+.hero-meta { font-size: 1.35rem; color: #fff; margin: 0 0 .3rem; }
+.hero-meta strong { font-weight: 600; }
+.hero-actions {
+  margin-top: 2.2rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .9rem;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-actions .btn {
+  width: 100%;
+  text-align: center;
+  padding: .9rem 1rem;
+  letter-spacing: .14em;
+  font-size: .78rem;
+}
+
+/* Outline button needs white edges on the green hero */
+.hero .btn-outline { color: #fff; border-color: #fff; }
+.hero .btn-outline:hover { background: #fff; color: var(--olive); }
+
+/* Framed portrait echoing the invitation's double-line frame */
+.portrait-frame {
+  position: relative;
+  padding: 14px;
+  background: var(--cream);
+  border: 1px solid var(--olive);
+  box-shadow: 0 18px 45px rgba(44, 46, 24, .28);
+}
+.portrait-frame::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid var(--olive);
+  pointer-events: none;
+}
+.portrait-frame img { filter: grayscale(100%) contrast(1.04); }
+
+/* ---------- Countdown ---------- */
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 2.4rem;
+  margin: 1rem 0 0;
+  flex-wrap: wrap;
+}
+.countdown .unit { text-align: center; min-width: 64px; }
+.countdown .num {
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--olive);
+}
+.countdown .lbl {
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  font-size: .72rem;
+  color: var(--olive);
+  margin-top: .5rem;
+}
+
+/* ============================================================
+   PAGE BANNER (interior pages)
+   ============================================================ */
+.page-banner {
+  background: var(--olive);
+  color: var(--cream);
+  text-align: center;
+  padding: 3rem 1.5rem 2.75rem;
+}
+.page-banner .script { font-size: clamp(3rem, 7vw, 4.5rem); color: var(--cream); }
+.page-banner p { color: var(--sage-light); letter-spacing: .04em; margin: .4rem 0 0; }
+
+/* ============================================================
+   DETAIL CARDS
+   ============================================================ */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+.card {
+  background: var(--ivory);
+  border: 1px solid rgba(86, 90, 43, .25);
+  padding: 2.2rem 1.8rem;
+  text-align: center;
+}
+.card h3 {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: 2.1rem;
+  line-height: 1.05;
+  color: var(--burgundy);
+  margin-bottom: .35rem;
+}
+.card .card-icon { margin-bottom: .7rem; line-height: 0; }
+.card .card-icon svg {
+  width: 60px;
+  height: 60px;
+  fill: none;
+  stroke: var(--olive);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: url(#sketch);
+}
+
+/* ============================================================
+   SCHEDULE / TIMELINE
+   ============================================================ */
+.timeline { max-width: 720px; margin: 0 auto; position: relative; }
+/* connector line drawn between consecutive dots — none after the last dot */
+.tl-item::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: .3rem;
+  bottom: -.3rem;
+  width: 2px;
+  background: repeating-linear-gradient(180deg, var(--burgundy) 0 3px, transparent 3px 9px);
+  z-index: 0;
+}
+.tl-item:last-child::after { display: none; }
+/* full-width rows; content sits in one half, dot is dead-centre on the spine */
+.tl-item {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  padding-bottom: 2.2rem;
+}
+.tl-item:nth-child(odd) { text-align: right; padding-right: calc(50% + 2.2rem); }
+.tl-item:nth-child(even) { text-align: left; padding-left: calc(50% + 2.2rem); }
+.tl-item:last-child { padding-bottom: 0; }
+/* dots use the SAME 50% + translateX as the spine, so they always align */
+.tl-item::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: .3rem;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--olive);
+  border: 3px solid var(--cream);
+  box-shadow: 0 0 0 1px var(--olive);
+  z-index: 1;
+}
+.tl-time {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  line-height: 1.1;
+  color: var(--burgundy);
+}
+.tl-title {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--olive-deep);
+  margin: .25rem 0 0;
+}
+.tl-item p { margin: .3rem 0 0; font-size: .85rem; color: var(--olive); }
+
+/* Date heading above each day's timeline */
+.tl-day {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--olive-deep);
+  margin: 0 0 2rem;
+}
+.tl-day + .timeline { margin-top: 0; }
+.tl-day-next { margin-top: 3.5rem; }
+
+/* ============================================================
+   RSVP — circular badge motif + form
+   ============================================================ */
+.rsvp-badge {
+  width: 104px; height: 104px;
+  margin: 0 auto 1.8rem;
+  border-radius: 50%;
+  background: var(--olive);
+  color: var(--cream);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  box-shadow: 0 0 0 5px var(--cream), 0 0 0 6px var(--olive);
+}
+.rsvp-badge .script { font-size: 1.85rem; line-height: 1; }
+
+.form {
+  max-width: 620px;
+  margin: 0 auto;
+  background: var(--ivory);
+  padding: 2.6rem;
+  border: 1px solid rgba(86, 90, 43, .25);
+}
+.field { margin-bottom: 1.4rem; }
+.field label {
+  display: block;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: .08em;
+  font-size: .95rem;
+  color: var(--olive-deep);
+  margin-bottom: .45rem;
+}
+.field .req { color: var(--burgundy); }
+.field .field-hint {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-style: italic;
+  font-size: .92rem;
+  letter-spacing: 0;
+  color: var(--olive);
+  margin-top: .25rem;
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  padding: .75rem .85rem;
+  border: 1px solid rgba(86, 90, 43, .4);
+  border-radius: 2px;
+  background: #fff;
+  color: var(--ink);
+}
+.field textarea { min-height: 110px; resize: vertical; }
+.field input:focus,
+.field select:focus,
+.field textarea:focus { outline: none; border-color: var(--olive); box-shadow: 0 0 0 2px rgba(86,90,43,.18); }
+
+.radio-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+.radio-pill {
+  flex: 1 1 140px;
+  position: relative;
+}
+.radio-pill input { position: absolute; opacity: 0; }
+.radio-pill span {
+  display: block;
+  text-align: center;
+  padding: .8rem 1rem;
+  border: 1px solid rgba(86,90,43,.4);
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: var(--font-serif);
+  letter-spacing: .05em;
+  transition: all .15s;
+}
+.radio-pill input:checked + span { background: var(--olive); color: var(--cream); border-color: var(--olive); }
+
+.form .btn { width: 100%; margin-top: .5rem; }
+.form-note { font-size: .92rem; text-align: center; color: var(--olive); margin-top: 1.2rem; }
+
+.form-success {
+  display: none;
+  text-align: center;
+  background: var(--ivory);
+  border: 1px solid rgba(86,90,43,.25);
+  padding: 3rem 2rem;
+  max-width: 620px;
+  margin: 0 auto;
+}
+.form-success .script { font-size: 3rem; color: var(--olive); }
+
+/* ============================================================
+   FAQ — accordion
+   ============================================================ */
+.faq { max-width: 760px; margin: 0 auto; }
+.faq details {
+  border-bottom: 1px solid rgba(86, 90, 43, .25);
+  padding: 1.3rem 0;
+}
+.faq summary {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: var(--olive-deep);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--burgundy); font-size: 1.6rem; line-height: 1; transition: transform .2s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { margin: .9rem 0 .2rem; }
+
+/* ============================================================
+   TRAVEL
+   ============================================================ */
+.split {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.split .map-frame {
+  border: 1px solid var(--olive);
+  padding: 10px;
+  background: var(--cream);
+}
+.split iframe { width: 100%; height: 340px; border: 0; display: block; filter: grayscale(20%); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  background: var(--olive-deep);
+  color: var(--sage-light);
+  text-align: center;
+  padding: 3rem 1.5rem;
+}
+.site-footer .footer-script { font-family: var(--font-script); font-size: 2.6rem; color: var(--cream); margin: 0 0 .3rem; }
+.site-footer p { margin: .15rem 0; font-size: .95rem; letter-spacing: .05em; }
+.site-footer .footer-meta { color: var(--sage-light); opacity: .8; font-size: .82rem; margin-top: 1rem; }
+
+.site-footer .footer-mono {
+  font-family: var(--font-script);
+  font-size: 2.8rem;
+  line-height: 1;
+  color: var(--cream);
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 0 .8rem;
+}
+.site-footer .footer-mono span { color: var(--burgundy); }
+.site-footer .footer-links { margin: 0; font-size: .8rem; color: var(--sage-light); }
+.site-footer .footer-links a {
+  color: var(--sage-light);
+  text-decoration: none;
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  padding: 0 .3rem;
+  transition: color .2s;
+}
+.site-footer .footer-links a:hover { color: var(--cream); }
+
+/* ============================================================
+   Scroll-reveal
+   ============================================================ */
+/* Only hide reveal elements when JS is available (class added in <head>). */
+.js .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+.js .reveal.in { opacity: 1; transform: none; }
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 860px) {
+  body { font-size: 18px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero-copy { order: 2; text-align: center; }
+  .hero-actions { justify-content: center; }
+  .portrait-frame { max-width: 380px; margin: 0 auto; }
+  .split { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* Header nav stacks below the monogram when it can't sit beside it */
+@media (max-width: 780px) {
+  .nav-inner {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    gap: .6rem;
+    padding-top: .7rem;
+    padding-bottom: .7rem;
+  }
+  .site-nav { justify-content: center; gap: .4rem 1.1rem; }
+  .site-nav a { font-size: .72rem; letter-spacing: .1em; }
+}
+
+/* Timeline becomes a centred single column on small screens */
+@media (max-width: 600px) {
+  .timeline::before,
+  .tl-item::after { display: none; }
+  .tl-item,
+  .tl-item:nth-child(odd),
+  .tl-item:nth-child(even) {
+    width: 100%;
+    text-align: center;
+    padding: 0 0 1.8rem;
+  }
+  .tl-item::before {
+    position: static;
+    display: block;
+    margin: 0 auto .6rem;
+    transform: none;
+    left: auto;
+  }
+  /* clearer separation between the two days on phone */
+  .tl-day-next { margin-top: 2.6rem; }
+  /* venue drops to its own centred line under the date */
+  .page-banner .bn-sep { display: none; }
+  .page-banner .bn-venue { display: block; margin-top: .25rem; }
+}
+
+@media (max-width: 480px) {
+  .section { padding: 2.75rem 1.2rem; }
+  .form { padding: 1.8rem 1.3rem; }
+  .site-nav a { font-size: .66rem; letter-spacing: .08em; }
+}
