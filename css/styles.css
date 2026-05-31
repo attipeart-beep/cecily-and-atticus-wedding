@@ -399,8 +399,22 @@ h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; line-height: 1.1;
   margin: 0 0 2rem;
 }
 .tl-day + .timeline { margin-top: 0; }
-.tl-day-next { margin-top: 3.5rem; }
+.tl-day-next { margin-top: 0; }
 .tl-note { margin: 3rem 0; }
+
+/* Facilities list (Travel page) */
+.facilities {
+  max-width: 620px;
+  margin: 1.8rem auto 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+.facilities li { margin: 0 0 1rem; line-height: 1.55; }
+.facilities li:last-child { margin-bottom: 0; }
+/* Taxi placeholder list */
+.taxi-list { margin: .5rem 0 0; padding-left: 1.2rem; }
+.taxi-list li { margin: 0 0 .35rem; }
 
 /* ============================================================
    RSVP — circular badge motif + form
