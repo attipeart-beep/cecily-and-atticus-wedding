@@ -96,12 +96,34 @@
       .forEach(function (r) { r.addEventListener("change", updateForm); });
     updateForm();
 
+    function firstName(full) {
+      return (full || "").trim().split(/\s+/)[0] || "";
+    }
+
+    // Build "Jane" or "Jane & John" from whoever is being responded for,
+    // and store it in the hidden reply_names field for the email subject.
+    function setReplyNames() {
+      var names = [];
+      var g1 = form.querySelector('[name="guest_1_name"]');
+      var n1 = firstName(g1 ? g1.value : "");
+      if (n1) names.push(n1);
+      if (picked("has_guest_2") === "Yes") {
+        var g2 = form.querySelector('[name="guest_2_name"]');
+        var n2 = firstName(g2 ? g2.value : "");
+        if (n2) names.push(n2);
+      }
+      var field = document.getElementById("reply_names");
+      if (field) field.value = names.join(" & ");
+    }
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var btn = form.querySelector('button[type="submit"]');
       var original = btn.textContent;
       btn.disabled = true;
       btn.textContent = "Sending…";
+
+      setReplyNames();
 
       // Local demo mode: when previewing off a real host (file:// or
       // localhost) there is no Netlify backend, so just show success.
