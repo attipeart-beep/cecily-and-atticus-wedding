@@ -100,9 +100,10 @@
       return (full || "").trim().split(/\s+/)[0] || "";
     }
 
-    // Build "Jane" or "Jane & John" from whoever is being responded for,
-    // and store it in the hidden reply_names field for the email subject.
-    function setReplyNames() {
+    // Build "New RSVP from Jane" or "...Jane & John" from whoever is being
+    // responded for, and store it in the hidden "subject" field. Netlify uses
+    // a field named "subject" as the notification email's subject line.
+    function setSubject() {
       var names = [];
       var g1 = form.querySelector('[name="guest_1_name"]');
       var n1 = firstName(g1 ? g1.value : "");
@@ -112,8 +113,10 @@
         var n2 = firstName(g2 ? g2.value : "");
         if (n2) names.push(n2);
       }
-      var field = document.getElementById("reply_names");
-      if (field) field.value = names.join(" & ");
+      var field = document.getElementById("rsvp-subject");
+      if (field) {
+        field.value = names.length ? "New RSVP from " + names.join(" & ") : "New RSVP";
+      }
     }
 
     form.addEventListener("submit", function (e) {
@@ -123,7 +126,7 @@
       btn.disabled = true;
       btn.textContent = "Sending…";
 
-      setReplyNames();
+      setSubject();
 
       // Local demo mode: when previewing off a real host (file:// or
       // localhost) there is no Netlify backend, so just show success.

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital@0;1&family=Dawning+of+a+New+Day&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=9" />
+  <link rel="stylesheet" href="css/styles.css?v=10" />
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -52,10 +52,11 @@
 
         <!-- Tells Netlify which form this submission belongs to -->
         <input type="hidden" name="form-name" value="rsvp" />
-        <!-- Filled in by JS at submit time with the responder's first name(s),
-             so the notification email subject can read e.g. "RSVP from Jane & John".
-             Use {{ reply_names }} in the Netlify email subject. -->
-        <input type="hidden" name="reply_names" id="reply_names" value="" />
+        <!-- Netlify uses a field literally named "subject" as the email
+             subject line. JS fills this at submit time with the responder's
+             first name(s), e.g. "New RSVP from Jane & John". No dashboard
+             template needed — this overrides the UI subject. -->
+        <input type="hidden" name="subject" id="rsvp-subject" value="New RSVP" />
         <!-- Honeypot: hidden from people, catches spam bots -->
         <p hidden><label>Don&rsquo;t fill this out if you&rsquo;re human: <input name="bot-field" /></label></p>
 
@@ -193,6 +194,6 @@
     </p>
   </footer>
 
-  <script src="js/main.js?v=9"></script>
+  <script src="js/main.js?v=10"></script>
 </body>
 </html>
