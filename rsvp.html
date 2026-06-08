@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital@0;1&family=Dawning+of+a+New+Day&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=5" />
+  <link rel="stylesheet" href="css/styles.css?v=6" />
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -20,11 +20,11 @@
   </header>
 
   <section class="page-banner">
-    <h1 class="script">Please RSVP</h1>
-    <p>We&rsquo;d be grateful for your reply by <strong>1st October 2026</strong></p>
+    <h1 class="script">Please <span style="font-size:1.28em">R</span>SVP</h1>
+    <p>We&rsquo;d be grateful for your reply by <strong>31st July 2026</strong></p>
   </section>
 
-  <section class="section bg-cream" style="padding-bottom:1.25rem">
+  <section class="section bg-cream" style="padding-top:2.5rem;padding-bottom:1.25rem">
     <div class="inner">
 
       <div class="rsvp-badge reveal">
@@ -42,61 +42,99 @@
             method="POST">
 
         <div class="field">
-          <label for="guest1">Guest Name 1 <span class="req">*</span></label>
-          <input type="text" id="guest1" name="guest_name_1" required placeholder="e.g. Jane Smith" />
+          <label for="g1name">Your full name <span class="req">*</span></label>
+          <input type="text" id="g1name" name="guest_1_name" required placeholder="e.g. Jane Smith" />
         </div>
 
         <div class="field">
-          <label for="guest2">Guest Name 2</label>
-          <input type="text" id="guest2" name="guest_name_2" placeholder="e.g. John Smith (if applicable)" />
+          <label for="g1email">Your email <span class="req">*</span></label>
+          <input type="email" id="g1email" name="guest_1_email" required placeholder="you@example.com" />
         </div>
 
         <div class="field">
-          <label for="email">Email address <span class="req">*</span></label>
-          <input type="email" id="email" name="email" required placeholder="you@example.com" />
-        </div>
-
-        <div class="field">
-          <label>Will you be able to join us at our wedding? <span class="req">*</span></label>
+          <label>Will you be joining us? <span class="req">*</span></label>
           <div class="radio-row">
             <label class="radio-pill">
-              <input type="radio" name="attending" value="Joyfully Accept" required />
+              <input type="radio" name="guest_1_attending" value="Joyfully Accept" required />
               <span>Joyfully Accept</span>
             </label>
             <label class="radio-pill">
-              <input type="radio" name="attending" value="Regretfully Decline" />
+              <input type="radio" name="guest_1_attending" value="Regretfully Decline" />
               <span>Regretfully Decline</span>
             </label>
           </div>
         </div>
 
-        <div id="attending-extra">
+        <!-- Everything below is revealed only once the question above is answered -->
+        <div id="rsvp-more" hidden>
+
           <div class="field">
-            <label>
-              Would you like on-site accommodation? <span class="req">*</span>
-              <span class="field-hint">If so, we&rsquo;ll be in touch with the best option for your party.</span>
-            </label>
+            <label>Are you also responding for a second guest?</label>
             <div class="radio-row">
               <label class="radio-pill">
-                <input type="radio" name="accommodation" value="Yes" />
+                <input type="radio" name="has_guest_2" value="Yes" />
                 <span>Yes</span>
               </label>
               <label class="radio-pill">
-                <input type="radio" name="accommodation" value="No" />
-                <span>No</span>
+                <input type="radio" name="has_guest_2" value="No" />
+                <span>No, just me</span>
               </label>
             </div>
           </div>
 
-          <div class="field">
-            <label for="dietary">Do you have any dietary restrictions / allergies? <span class="req">*</span></label>
-            <input type="text" id="dietary" name="dietary" placeholder="e.g. vegetarian, nut allergy, or &lsquo;none&rsquo;" />
+          <div id="guest2-fields" hidden>
+            <div class="field">
+              <label for="g2name">Second guest&rsquo;s full name</label>
+              <input type="text" id="g2name" name="guest_2_name" placeholder="e.g. John Smith" />
+            </div>
+            <div class="field">
+              <label for="g2email">Second guest&rsquo;s email</label>
+              <input type="email" id="g2email" name="guest_2_email" placeholder="them@example.com" />
+            </div>
+            <div class="field">
+              <label>Will they be joining us?</label>
+              <div class="radio-row">
+                <label class="radio-pill">
+                  <input type="radio" name="guest_2_attending" value="Joyfully Accept" />
+                  <span>Joyfully Accept</span>
+                </label>
+                <label class="radio-pill">
+                  <input type="radio" name="guest_2_attending" value="Regretfully Decline" />
+                  <span>Regretfully Decline</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div id="attending-extra" hidden>
+            <div class="field">
+              <label>
+                Would you like on-site accommodation? <span class="req">*</span>
+                <span class="field-hint">If so, we&rsquo;ll be in touch with the best option for you.</span>
+              </label>
+              <div class="radio-row">
+                <label class="radio-pill">
+                  <input type="radio" name="accommodation" value="Yes" />
+                  <span>Yes</span>
+                </label>
+                <label class="radio-pill">
+                  <input type="radio" name="accommodation" value="No" />
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="dietary">Any dietary restrictions or allergies?</label>
+              <input type="text" id="dietary" name="dietary" placeholder="e.g. vegetarian, nut allergy, or &lsquo;none&rsquo;" />
+            </div>
           </div>
 
           <div class="field">
             <label for="message">A message for the couple</label>
             <textarea id="message" name="message" placeholder="Anything you&rsquo;d like to tell us…"></textarea>
           </div>
+
         </div>
 
         <button type="submit" class="btn btn-primary">Send RSVP</button>
@@ -137,6 +175,6 @@
     </p>
   </footer>
 
-  <script src="js/main.js?v=5"></script>
+  <script src="js/main.js?v=6"></script>
 </body>
 </html>

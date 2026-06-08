@@ -65,22 +65,36 @@
   /* ---- RSVP form (Formspree) ---- */
   var form = document.getElementById("rsvp-form");
   if (form) {
-    var conditional = document.getElementById("attending-extra");
-    // The follow-up questions (accommodation, dietary, message) are hidden for
-    // anyone who declines, and only required when the guest accepts.
-    function toggleConditional() {
-      var accept = form.querySelector('input[name="attending"][value="Joyfully Accept"]');
-      var decline = form.querySelector('input[name="attending"][value="Regretfully Decline"]');
-      var accepting = !!(accept && accept.checked);
-      var declining = !!(decline && decline.checked);
-      if (conditional) conditional.style.display = declining ? "none" : "block";
-      form.querySelectorAll('input[name="accommodation"]').forEach(function (r) { r.required = accepting; });
-      var diet = document.getElementById("dietary");
-      if (diet) diet.required = accepting;
+    var more = document.getElementById("rsvp-more");
+    var guest2Fields = document.getElementById("guest2-fields");
+    var attendingExtra = document.getElementById("attending-extra");
+
+    function picked(name) {
+      var r = form.querySelector('input[name="' + name + '"]:checked');
+      return r ? r.value : null;
     }
-    form.querySelectorAll('input[name="attending"]').forEach(function (r) {
-      r.addEventListener("change", toggleConditional);
-    });
+
+    function updateForm() {
+      // Reveal the rest only once Guest 1 has answered the attendance question.
+      if (more) more.hidden = !picked("guest_1_attending");
+
+      // Second-guest fields appear only if the guest is responding for two.
+      var showG2 = picked("has_guest_2") === "Yes";
+      if (guest2Fields) guest2Fields.hidden = !showG2;
+      form.querySelectorAll('#guest2-fields input[type="text"], #guest2-fields input[type="email"]')
+        .forEach(function (i) { i.required = showG2; });
+      form.querySelectorAll('input[name="guest_2_attending"]').forEach(function (i) { i.required = showG2; });
+
+      // Accommodation + dietary only matter if at least one guest is attending.
+      var anyAttending = picked("guest_1_attending") === "Joyfully Accept" ||
+                         (showG2 && picked("guest_2_attending") === "Joyfully Accept");
+      if (attendingExtra) attendingExtra.hidden = !anyAttending;
+      form.querySelectorAll('input[name="accommodation"]').forEach(function (i) { i.required = anyAttending; });
+    }
+
+    form.querySelectorAll('input[name="guest_1_attending"], input[name="has_guest_2"], input[name="guest_2_attending"]')
+      .forEach(function (r) { r.addEventListener("change", updateForm); });
+    updateForm();
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
