@@ -62,7 +62,7 @@
     setInterval(tick, 60000);
   }
 
-  /* ---- RSVP form (Formspree) ---- */
+  /* ---- RSVP form (Netlify Forms) ---- */
   var form = document.getElementById("rsvp-form");
   if (form) {
     var more = document.getElementById("rsvp-more");
@@ -98,22 +98,27 @@
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var endpoint = form.getAttribute("action");
       var btn = form.querySelector('button[type="submit"]');
       var original = btn.textContent;
       btn.disabled = true;
       btn.textContent = "Sending…";
 
-      // If the Formspree endpoint hasn't been configured yet, just show success (demo).
-      if (!endpoint || endpoint.indexOf("YOUR_FORM_ID") !== -1) {
+      // Local demo mode: when previewing off a real host (file:// or
+      // localhost) there is no Netlify backend, so just show success.
+      var host = location.hostname;
+      var isLocal = host === "" || host === "localhost" || host === "127.0.0.1";
+      if (isLocal) {
         showSuccess();
         return;
       }
 
-      fetch(endpoint, {
+      // Netlify Forms expects a URL-encoded POST that includes form-name.
+      var body = new URLSearchParams(new FormData(form)).toString();
+
+      fetch(form.getAttribute("action") || "/", {
         method: "POST",
-        body: new FormData(form),
-        headers: { Accept: "application/json" }
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: body
       })
         .then(function (res) {
           if (res.ok) { showSuccess(); }
@@ -122,7 +127,7 @@
         .catch(function () {
           btn.disabled = false;
           btn.textContent = original;
-          alert("Sorry — something went wrong sending your RSVP. Please try again, or email us directly.");
+          alert("Sorry — something went wrong sending your RSVP. Please try again, or email us directly at cecandatti@gmail.com.");
         });
     });
 

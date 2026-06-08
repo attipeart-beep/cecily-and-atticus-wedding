@@ -431,7 +431,7 @@ h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; line-height: 1.1;
   text-align: center;
   box-shadow: 0 0 0 5px var(--cream), 0 0 0 6px var(--olive);
 }
-.rsvp-badge .script { font-size: 1.85rem; line-height: 1; }
+.rsvp-badge .script { font-size: 1.85rem; line-height: 1; transform: translateX(-3px); }
 
 .form {
   max-width: 620px;

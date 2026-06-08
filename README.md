@@ -9,46 +9,58 @@ A static, multi-page wedding website. No build step, no dependencies — just op
 |------|---------|
 | `index.html`    | Home — hero, countdown, details at a glance |
 | `schedule.html` | The Day — arrival info, hour-by-hour timeline, dress code |
-| `rsvp.html`     | RSVP form (wired to Formspree) |
+| `rsvp.html`     | RSVP form (wired to Netlify Forms) |
 | `travel.html`   | Travel & Accommodation, map, practicalities |
 | `faq.html`      | Q&A accordion |
 
 Shared styling lives in `css/styles.css`; shared behaviour in `js/main.js`. Images are in `images/`.
 
-## 1. Wire up RSVPs (Formspree)
-The RSVP form currently runs in **demo mode** (it shows the thank-you message but doesn't send anywhere).
+## 1. Publish on Netlify
 
-To receive real RSVPs by email:
-1. Go to [formspree.io](https://formspree.io), sign up (free tier is fine), and create a **New form**.
-2. Copy the form's endpoint — it looks like `https://formspree.io/f/abcdwxyz`.
-3. In `rsvp.html`, find this line and replace `YOUR_FORM_ID` with your real ID:
-   ```html
-   <form id="rsvp-form" ... action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-   ```
-4. Submit one test RSVP and confirm the first email (Formspree asks you to verify once).
+The site is plain HTML/CSS/JS with no build step. Two ways to get it live:
 
-RSVPs will then arrive in your email and in the Formspree dashboard. The form already sends: name, email, attending (yes/no), guest count, staying-over, dietary needs, song request, and a message.
+**Option A — Netlify Drop (fastest, no account juggling)**
+1. Go to [app.netlify.com/drop](https://app.netlify.com/drop) (sign in / sign up — free).
+2. Drag the **whole `cecily-and-atticus-wedding` folder** onto the page.
+3. It deploys in seconds to a `something-random.netlify.app` URL.
+4. To redeploy after edits, drag the folder on again (or connect Git, below).
 
-## 2. Things to personalise
-- **Contact email:** replace `hello@example.com` in `rsvp.html` and `faq.html`.
-- **RSVP deadline:** currently *1st October 2026* (in `rsvp.html` and `faq.html`).
-- **Schedule times:** placeholder timings in `schedule.html` — update to your real running order.
+**Option B — Connect a Git repo (auto-deploys on every push)**
+1. Push this folder to a GitHub repo.
+2. In Netlify: **Add new site → Import an existing project → GitHub**, pick the repo.
+3. Leave build command blank and publish directory as `.` (the included `netlify.toml` already sets this). Deploy.
+4. Every `git push` now redeploys automatically.
+
+Either way, add a custom domain later under **Site → Domain management** if you want `cecilyandatticus.com` instead of the `.netlify.app` address.
+
+## 2. RSVPs by email (Netlify Forms — already wired)
+
+The RSVP form is set up for **Netlify Forms** — no third-party account, no API keys. Netlify detects the form on deploy and captures every submission.
+
+After your **first deploy**, turn on email notifications:
+1. Netlify dashboard → your site → **Forms**. You should see a form named **`rsvp`** (it appears once the site is deployed and the form has been detected).
+2. Open it → **Settings & notifications** → **Add notification → Email notification**.
+3. Send notifications to **cecandatti@gmail.com**. Save.
+4. Submit one test RSVP on the live site and confirm the email arrives.
+
+Every submission is also stored in the **Forms** tab, and you can export them as CSV. The form captures: guest 1 name/email/attendance, optional guest 2 name/email/attendance, on-site accommodation, dietary needs, and a message.
+
+> **Local preview note:** when you open the site locally (file:// or `localhost`) there's no Netlify backend, so the form runs in **demo mode** — it shows the thank-you message but doesn't send. It only sends for real once deployed to Netlify. The free tier covers 100 submissions/month, which is plenty for a wedding.
+
+## 3. Things to personalise
+- **RSVP deadline:** currently *31st July 2026* (in `rsvp.html` and `faq.html`).
 - **Venue address / map:** the map points to Babington House BA11 3RW — adjust in `travel.html` if needed.
-- **Gift list, plus-ones, taxi numbers:** edit the relevant answers in `faq.html`.
+- **Taxi numbers:** placeholder entries in `travel.html`.
 
-## 3. Preview locally
+## 4. Preview locally
 ```bash
 cd cecily-and-atticus-wedding
 python3 -m http.server 8000
 # then open http://localhost:8000
 ```
 
-## 4. Publish (free options)
-- **Netlify Drop:** drag the folder onto [app.netlify.com/drop](https://app.netlify.com/drop).
-- **Vercel / GitHub Pages:** push the folder to a repo and connect it.
-- Or upload to any web host — it's plain HTML/CSS/JS.
-
 ## Design
 Palette and typography are drawn from the invitation stationery: olive green, cream, and burgundy
-pinstripe on a sage background, with *Pinyon Script* (names), *Cormorant Garamond* (headings) and
-*EB Garamond* (body). The couple's black-and-white photo is the lead image on the home page.
+pinstripe on a sage background, with *Dawning of a New Day* (names & script headings), *Cormorant
+Garamond* (headings) and *EB Garamond* (body). The couple's black-and-white photo is the lead image
+on the home page.

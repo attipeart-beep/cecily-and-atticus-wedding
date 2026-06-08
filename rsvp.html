@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital@0;1&family=Dawning+of+a+New+Day&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=6" />
+  <link rel="stylesheet" href="css/styles.css?v=8" />
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -28,18 +28,32 @@
     <div class="inner">
 
       <div class="rsvp-badge reveal">
-        <span class="script">RSVP</span>
+        <span class="script"><span style="font-size:1.28em">R</span>SVP</span>
       </div>
 
       <!-- =====================================================
-           FORMSPREE SETUP
-           Replace YOUR_FORM_ID below with your real Formspree
-           endpoint (https://formspree.io → New form → copy ID).
-           Until then the form shows a success message in demo mode.
+           NETLIFY FORMS
+           This form is handled by Netlify automatically once the
+           site is deployed there — no API keys or third-party
+           account needed. Submissions are emailed to you and also
+           stored under Forms in the Netlify dashboard.
+           After your first deploy, go to:
+             Netlify → Site → Forms → rsvp → Settings & notifications
+           and add an email notification to cecandatti@gmail.com.
+           (Locally the form runs in demo mode and just shows the
+           thank-you message.)
            ===================================================== -->
       <form id="rsvp-form" class="form reveal"
-            action="https://formspree.io/f/YOUR_FORM_ID"
-            method="POST">
+            name="rsvp"
+            method="POST"
+            action="/"
+            data-netlify="true"
+            netlify-honeypot="bot-field">
+
+        <!-- Tells Netlify which form this submission belongs to -->
+        <input type="hidden" name="form-name" value="rsvp" />
+        <!-- Honeypot: hidden from people, catches spam bots -->
+        <p hidden><label>Don&rsquo;t fill this out if you&rsquo;re human: <input name="bot-field" /></label></p>
 
         <div class="field">
           <label for="g1name">Your full name <span class="req">*</span></label>
@@ -175,6 +189,6 @@
     </p>
   </footer>
 
-  <script src="js/main.js?v=6"></script>
+  <script src="js/main.js?v=8"></script>
 </body>
 </html>
