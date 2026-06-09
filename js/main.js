@@ -71,6 +71,10 @@
     var g1Diet = document.getElementById("g1-diet");
     var g2Diet = document.getElementById("g2-diet");
 
+    // Google Apps Script web app that logs each RSVP to the Sheet and emails
+    // us. The site posts here directly (more reliable than Netlify's webhook).
+    var TRACKER_URL = "https://script.google.com/macros/s/AKfycby0NPNHU4u3JCrP84qbdv7dZ32doRrtfupma657A_Rq-pY7w65Md0gnixElOhFKO_h0/exec";
+
     function picked(name) {
       var r = form.querySelector('input[name="' + name + '"]:checked');
       return r ? r.value : null;
@@ -146,8 +150,27 @@
         return;
       }
 
-      // Netlify Forms expects a URL-encoded POST that includes form-name.
-      var body = new URLSearchParams(new FormData(form)).toString();
+      var fd = new FormData(form);
+
+      // Send a copy straight to the Google tracker (Sheet + email). This is
+      // fire-and-forget: "no-cors" means we can't read the reply, but Apps
+      // Script still receives it and runs. Sending JSON as text/plain keeps it
+      // a "simple" request so the browser doesn't block it.
+      if (TRACKER_URL) {
+        var payload = {};
+        fd.forEach(function (v, k) { payload[k] = v; });
+        try {
+          fetch(TRACKER_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify(payload)
+          }).catch(function () {});
+        } catch (err) { /* ignore — tracker is best-effort */ }
+      }
+
+      // Also record the submission in Netlify (URL-encoded, includes form-name).
+      var body = new URLSearchParams(fd).toString();
 
       fetch(form.getAttribute("action") || "/", {
         method: "POST",
