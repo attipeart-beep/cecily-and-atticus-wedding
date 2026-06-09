@@ -26,9 +26,11 @@ var SHARED_SECRET = '';
 
 // Column headers, in order. (Don't reorder without updating appendRow_.)
 var COLUMNS = [
-  'Received', 'Guest 1 name', 'Guest 1 email', 'Guest 1 reply',
-  'Second guest?', 'Guest 2 name', 'Guest 2 email', 'Guest 2 reply',
-  'Accommodation', 'Dietary', 'Message'
+  'Received',
+  'Guest 1 name', 'Guest 1 email', 'Guest 1 reply', 'Guest 1 dietary',
+  'Second guest?',
+  'Guest 2 name', 'Guest 2 email', 'Guest 2 reply', 'Guest 2 dietary',
+  'Accommodation', 'Message'
 ];
 
 /* ===================== WEB ENTRY POINTS ===================== */
@@ -67,11 +69,10 @@ function doGet() {
 function getSheet_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
-  if (sheet.getLastRow() === 0) {
-    sheet.appendRow(COLUMNS);
-    sheet.getRange(1, 1, 1, COLUMNS.length).setFontWeight('bold');
-    sheet.setFrozenRows(1);
-  }
+  // Always keep the header row in sync with COLUMNS (so column changes apply
+  // without you having to clear the sheet by hand).
+  sheet.getRange(1, 1, 1, COLUMNS.length).setValues([COLUMNS]).setFontWeight('bold');
+  sheet.setFrozenRows(1);
   return sheet;
 }
 
@@ -81,12 +82,13 @@ function appendRow_(d) {
     d.guest_1_name || '',
     d.guest_1_email || '',
     d.guest_1_attending || '',
+    d.dietary_1 || '',
     d.has_guest_2 || '',
     d.guest_2_name || '',
     d.guest_2_email || '',
     d.guest_2_attending || '',
+    d.dietary_2 || '',
     d.accommodation || '',
-    d.dietary || '',
     d.message || ''
   ]);
 }
@@ -144,18 +146,19 @@ function buildHtml_(d) {
   var rows =
     row_('Guest 1', d.guest_1_name) +
     row_('Email', d.guest_1_email) +
-    row_('Reply', d.guest_1_attending, replyColor_(d.guest_1_attending));
+    row_('Reply', d.guest_1_attending, replyColor_(d.guest_1_attending)) +
+    row_('Dietary', d.dietary_1);
 
   if ((d.has_guest_2 || '') === 'Yes') {
     rows +=
       row_('Guest 2', d.guest_2_name) +
       row_('Email', d.guest_2_email) +
-      row_('Reply', d.guest_2_attending, replyColor_(d.guest_2_attending));
+      row_('Reply', d.guest_2_attending, replyColor_(d.guest_2_attending)) +
+      row_('Dietary', d.dietary_2);
   }
 
   rows +=
     row_('Accommodation', d.accommodation) +
-    row_('Dietary', d.dietary) +
     row_('Message', d.message);
 
   return '' +

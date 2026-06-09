@@ -68,6 +68,8 @@
     var more = document.getElementById("rsvp-more");
     var guest2Fields = document.getElementById("guest2-fields");
     var attendingExtra = document.getElementById("attending-extra");
+    var g1Diet = document.getElementById("g1-diet");
+    var g2Diet = document.getElementById("g2-diet");
 
     function picked(name) {
       var r = form.querySelector('input[name="' + name + '"]:checked');
@@ -78,6 +80,10 @@
       // Reveal the rest only once Guest 1 has answered the attendance question.
       if (more) more.hidden = !picked("guest_1_attending");
 
+      // Guest 1's dietary question appears only if they're attending.
+      var g1Attending = picked("guest_1_attending") === "Joyfully Accept";
+      if (g1Diet) g1Diet.hidden = !g1Attending;
+
       // Second-guest fields appear only if the guest is responding for two.
       var showG2 = picked("has_guest_2") === "Yes";
       if (guest2Fields) guest2Fields.hidden = !showG2;
@@ -85,9 +91,12 @@
         .forEach(function (i) { i.required = showG2; });
       form.querySelectorAll('input[name="guest_2_attending"]').forEach(function (i) { i.required = showG2; });
 
-      // Accommodation + dietary only matter if at least one guest is attending.
-      var anyAttending = picked("guest_1_attending") === "Joyfully Accept" ||
-                         (showG2 && picked("guest_2_attending") === "Joyfully Accept");
+      // Guest 2's dietary question appears only if they're attending.
+      var g2Attending = showG2 && picked("guest_2_attending") === "Joyfully Accept";
+      if (g2Diet) g2Diet.hidden = !g2Attending;
+
+      // Accommodation is a shared catch-all — shown if at least one guest is attending.
+      var anyAttending = g1Attending || g2Attending;
       if (attendingExtra) attendingExtra.hidden = !anyAttending;
       form.querySelectorAll('input[name="accommodation"]').forEach(function (i) { i.required = anyAttending; });
     }

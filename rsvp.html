@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital@0;1&family=Dawning+of+a+New+Day&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=10" />
+  <link rel="stylesheet" href="css/styles.css?v=11" />
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -84,6 +84,12 @@
           </div>
         </div>
 
+        <!-- Guest 1's dietary needs — shown once they accept -->
+        <div class="field" id="g1-diet" hidden>
+          <label for="dietary1">Your dietary requirements or allergies</label>
+          <input type="text" id="dietary1" name="dietary_1" placeholder="e.g. vegetarian, nut allergy, or &lsquo;none&rsquo;" />
+        </div>
+
         <!-- Everything below is revealed only once the question above is answered -->
         <div id="rsvp-more" hidden>
 
@@ -123,6 +129,12 @@
                 </label>
               </div>
             </div>
+
+            <!-- Guest 2's dietary needs — shown once they accept -->
+            <div class="field" id="g2-diet" hidden>
+              <label for="dietary2">Their dietary requirements or allergies</label>
+              <input type="text" id="dietary2" name="dietary_2" placeholder="e.g. vegetarian, nut allergy, or &lsquo;none&rsquo;" />
+            </div>
           </div>
 
           <div id="attending-extra" hidden>
@@ -142,11 +154,6 @@
                 </label>
               </div>
             </div>
-
-            <div class="field">
-              <label for="dietary">Any dietary restrictions or allergies?</label>
-              <input type="text" id="dietary" name="dietary" placeholder="e.g. vegetarian, nut allergy, or &lsquo;none&rsquo;" />
-            </div>
           </div>
 
           <div class="field">
@@ -164,7 +171,7 @@
       <div id="rsvp-success" class="form-success reveal">
         <p class="script">Thank you!</p>
         <div class="rule"></div>
-        <p>Your RSVP has been received. We can&rsquo;t wait to celebrate with you.</p>
+        <p>Your RSVP has been received. We can&rsquo;t wait to celebrate with you!</p>
         <p style="margin-top:1.5rem"><a class="btn btn-outline" href="travel.html">Travel &amp; Stay</a></p>
       </div>
 
@@ -194,6 +201,6 @@
     </p>
   </footer>
 
-  <script src="js/main.js?v=10"></script>
+  <script src="js/main.js?v=11"></script>
 </body>
 </html>
