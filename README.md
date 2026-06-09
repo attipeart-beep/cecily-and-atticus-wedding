@@ -47,6 +47,11 @@ Every submission is also stored in the **Forms** tab, and you can export them as
 
 > **Local preview note:** when you open the site locally (file:// or `localhost`) there's no Netlify backend, so the form runs in **demo mode** — it shows the thank-you message but doesn't send. It only sends for real once deployed to Netlify. The free tier covers 100 submissions/month, which is plenty for a wedding.
 
+### Optional: live spreadsheet tracker + branded email
+For a Google Sheet that auto-fills with every RSVP **and** a styled notification
+email in the wedding colours — all from your own Google account, no extra
+services — follow **`tracker/SETUP.md`**. (It replaces the plain Netlify email.)
+
 ## 3. Things to personalise
 - **RSVP deadline:** currently *31st July 2026* (in `rsvp.html` and `faq.html`).
 - **Venue address / map:** the map points to Babington House BA11 3RW — adjust in `travel.html` if needed.
