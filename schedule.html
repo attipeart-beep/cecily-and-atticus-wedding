@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital@0;1&family=Dawning+of+a+New+Day&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=12" />
+  <link rel="stylesheet" href="css/styles.css?v=13" />
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -37,36 +37,50 @@
   <!-- TIMELINE -->
   <section class="section bg-ivory">
     <div class="inner">
+      <!-- hand-drawn sketch filter for the clock icons -->
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <filter id="sketch" x="-15%" y="-15%" width="130%" height="130%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="7" result="noise"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.7" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+      </svg>
       <div class="centered reveal">
         <p class="eyebrow" style="text-align:center;padding-left:0">What to expect</p>
       </div>
       <h3 class="tl-day reveal">Thursday 10th December</h3>
       <div class="timeline reveal">
         <div class="tl-item">
+          <span class="tl-clock" aria-hidden="true"><svg viewBox="0 0 64 64"><circle class="face" cx="32" cy="32" r="21"/><line class="hand" x1="32" y1="32" x2="41" y2="32"/><line class="hand" x1="32" y1="32" x2="32" y2="18"/></svg></span>
           <div class="tl-time">3:00 pm</div>
           <h3 class="tl-title">Check-in</h3>
         </div>
         <div class="tl-item">
+          <span class="tl-clock" aria-hidden="true"><svg viewBox="0 0 64 64"><circle class="face" cx="32" cy="32" r="21"/><line class="hand" x1="32" y1="32" x2="40.7" y2="34.3"/><line class="hand" x1="32" y1="32" x2="32" y2="46"/></svg></span>
           <div class="tl-time">3:30 <span style="text-transform:lowercase">to</span> 3:45 pm</div>
           <h3 class="tl-title">Take your seats</h3>
         </div>
         <div class="tl-item">
+          <span class="tl-clock" aria-hidden="true"><svg viewBox="0 0 64 64"><circle class="face" cx="32" cy="32" r="21"/><line class="hand" x1="32" y1="32" x2="39.8" y2="36.5"/><line class="hand" x1="32" y1="32" x2="32" y2="18"/></svg></span>
           <div class="tl-time">4:00 pm</div>
           <h3 class="tl-title">The Ceremony</h3>
         </div>
         <div class="tl-item">
+          <span class="tl-clock" aria-hidden="true"><svg viewBox="0 0 64 64"><circle class="face" cx="32" cy="32" r="21"/><line class="hand" x1="32" y1="32" x2="36.5" y2="39.8"/><line class="hand" x1="32" y1="32" x2="32" y2="18"/></svg></span>
           <div class="tl-time">5:00 pm</div>
           <h3 class="tl-title">Drinks &amp; Canap&eacute;s</h3>
         </div>
         <div class="tl-item">
+          <span class="tl-clock" aria-hidden="true"><svg viewBox="0 0 64 64"><circle class="face" cx="32" cy="32" r="21"/><line class="hand" x1="32" y1="32" x2="29.7" y2="40.7"/><line class="hand" x1="32" y1="32" x2="32" y2="46"/></svg></span>
           <div class="tl-time">6:30 pm</div>
           <h3 class="tl-title">Wedding Breakfast</h3>
         </div>
         <div class="tl-item">
+          <span class="tl-clock" aria-hidden="true"><svg viewBox="0 0 64 64"><circle class="face" cx="32" cy="32" r="21"/><line class="hand" x1="32" y1="32" x2="23" y2="32"/><line class="hand" x1="32" y1="32" x2="32" y2="18"/></svg></span>
           <div class="tl-time">9:00 pm</div>
           <h3 class="tl-title">The Party Starts</h3>
         </div>
         <div class="tl-item">
+          <span class="tl-clock" aria-hidden="true"><svg viewBox="0 0 64 64"><circle class="face" cx="32" cy="32" r="21"/><line class="hand" x1="32" y1="32" x2="27.5" y2="24.2"/><line class="hand" x1="32" y1="32" x2="32" y2="18"/></svg></span>
           <div class="tl-time">Late</div>
           <h3 class="tl-title">Evening snacks &amp; no curfew</h3>
         </div>
@@ -79,10 +93,12 @@
       <h3 class="tl-day tl-day-next reveal">Friday 11th December</h3>
       <div class="timeline reveal">
         <div class="tl-item">
+          <span class="tl-clock" aria-hidden="true"><svg viewBox="0 0 64 64"><circle class="face" cx="32" cy="32" r="21"/><line class="hand" x1="32" y1="32" x2="24.2" y2="36.5"/><line class="hand" x1="32" y1="32" x2="32" y2="18"/></svg></span>
           <div class="tl-time">08:00 <span style="text-transform:lowercase">to</span> 11:30 am</div>
           <h3 class="tl-title">An optional post-wedding breakfast</h3>
         </div>
         <div class="tl-item">
+          <span class="tl-clock" aria-hidden="true"><svg viewBox="0 0 64 64"><circle class="face" cx="32" cy="32" r="21"/><line class="hand" x1="32" y1="32" x2="32" y2="23"/><line class="hand" x1="32" y1="32" x2="32" y2="18"/></svg></span>
           <div class="tl-time">12:00 pm</div>
           <h3 class="tl-title">Checkout</h3>
           <p style="font-family:var(--font-serif)">(Beyond this, all guests are welcome to stay and use the facilities.)</p>
@@ -123,6 +139,6 @@
     </p>
   </footer>
 
-  <script src="js/main.js?v=12"></script>
+  <script src="js/main.js?v=13"></script>
 </body>
 </html>
