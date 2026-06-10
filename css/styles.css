@@ -361,6 +361,7 @@ h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; line-height: 1.1;
 /* clock face sits dead-centre on the spine, same 50% + translateX as the line */
 .tl-clock {
   position: absolute;
+  display: block;
   left: 50%;
   transform: translateX(-50%);
   top: -.15rem;
