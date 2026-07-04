@@ -197,4 +197,41 @@
       }
     }
   }
+
+  /* ---- Grounds map lightbox ---- */
+  var mapLink = document.querySelector(".grounds-map a");
+  if (mapLink) {
+    var lb = document.createElement("div");
+    lb.className = "map-lightbox";
+    lb.setAttribute("role", "dialog");
+    lb.setAttribute("aria-label", "Map of the grounds");
+    lb.innerHTML =
+      '<button type="button" class="map-lightbox-close" aria-label="Close map">&times;</button>' +
+      '<img alt="Map of the grounds at Babington House" />' +
+      '<p class="map-lightbox-hint">Tap outside the map to close</p>';
+    var lbImg = lb.querySelector("img");
+    document.body.appendChild(lb);
+
+    function openLightbox(e) {
+      e.preventDefault();
+      if (!lbImg.getAttribute("src")) {
+        lbImg.src = mapLink.getAttribute("href");
+      }
+      lb.classList.add("open");
+      document.body.classList.add("lightbox-open");
+    }
+    function closeLightbox() {
+      lb.classList.remove("open");
+      document.body.classList.remove("lightbox-open");
+    }
+
+    mapLink.addEventListener("click", openLightbox);
+    // Close on anything except the image itself (so pinch/double-tap zoom still works).
+    lb.addEventListener("click", function (e) {
+      if (e.target !== lbImg) closeLightbox();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && lb.classList.contains("open")) closeLightbox();
+    });
+  }
 })();
