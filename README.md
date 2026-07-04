@@ -53,7 +53,7 @@ email in the wedding colours — all from your own Google account, no extra
 services — follow **`tracker/SETUP.md`**. (It replaces the plain Netlify email.)
 
 ## 3. Things to personalise
-- **RSVP deadline:** currently *31st July 2026* (in `rsvp.html` and `faq.html`).
+- **RSVP deadline:** currently *1st August 2026* (in `rsvp.html` and `faq.html`).
 - **Venue address / map:** the map points to Babington House BA11 3RW — adjust in `travel.html` if needed.
 - **Taxi numbers:** placeholder entries in `travel.html`.
 
