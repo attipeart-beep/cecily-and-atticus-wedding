@@ -308,6 +308,16 @@ h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; line-height: 1.1;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.5rem;
 }
+/* "Good to know" cards: a single row of three, width-matched to the map below */
+.gtk-cards {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 700px) {
+  .gtk-cards { grid-template-columns: 1fr; max-width: 460px; }
+}
 .card {
   background: var(--ivory);
   border: 1px solid rgba(86, 90, 43, .25);
