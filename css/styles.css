@@ -243,6 +243,10 @@ h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; line-height: 1.1;
 .hero .btn-outline { color: #fff; border-color: #fff; }
 .hero .btn-outline:hover { background: #fff; color: var(--olive); }
 
+/* Nav buttons moved into the welcome block (also a green background) */
+.welcome .btn-outline { color: #fff; border-color: #fff; }
+.welcome .btn-outline:hover { background: #fff; color: var(--olive); }
+
 /* Framed portrait echoing the invitation's double-line frame */
 .portrait-frame {
   position: relative;
