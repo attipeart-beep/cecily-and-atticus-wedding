@@ -569,10 +569,14 @@ body.lightbox-open { overflow: hidden; }
 .radio-pill {
   flex: 1 1 140px;
   position: relative;
+  display: flex;
 }
 .radio-pill input { position: absolute; opacity: 0; }
 .radio-pill span {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   text-align: center;
   padding: .8rem 1rem;
   border: 1px solid rgba(86,90,43,.4);
