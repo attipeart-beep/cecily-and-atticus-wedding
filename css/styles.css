@@ -570,6 +570,7 @@ body.lightbox-open { overflow: hidden; }
   flex: 1 1 140px;
   position: relative;
   display: flex;
+  align-items: stretch;
 }
 .radio-pill input { position: absolute; opacity: 0; }
 .radio-pill span {
@@ -577,6 +578,7 @@ body.lightbox-open { overflow: hidden; }
   align-items: center;
   justify-content: center;
   width: 100%;
+  height: 100%;
   text-align: center;
   padding: .8rem 1rem;
   border: 1px solid rgba(86,90,43,.4);
