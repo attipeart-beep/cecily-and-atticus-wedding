@@ -62,12 +62,12 @@
 
         <div class="field">
           <label for="g1name">Your full name <span class="req">*</span></label>
-          <input type="text" id="g1name" name="guest_1_name" required placeholder="e.g. Jane Smith" />
+          <input type="text" id="g1name" name="guest_1_name" required />
         </div>
 
         <div class="field">
           <label for="g1email">Your email <span class="req">*</span></label>
-          <input type="email" id="g1email" name="guest_1_email" required placeholder="you@example.com" />
+          <input type="email" id="g1email" name="guest_1_email" required />
         </div>
 
         <div class="field">
@@ -87,7 +87,7 @@
         <!-- Guest 1's dietary needs - shown once they accept -->
         <div class="field" id="g1-diet" hidden>
           <label for="dietary1">Your dietary requirements or allergies</label>
-          <input type="text" id="dietary1" name="dietary_1" placeholder="e.g. vegetarian, nut allergy, or &lsquo;none&rsquo;" />
+          <input type="text" id="dietary1" name="dietary_1" placeholder="e.g. vegetarian, vegan, nut allergy" />
         </div>
 
         <!-- Everything below is revealed only once the question above is answered -->
@@ -110,11 +110,11 @@
           <div id="guest2-fields" hidden>
             <div class="field">
               <label for="g2name">Second guest&rsquo;s full name</label>
-              <input type="text" id="g2name" name="guest_2_name" placeholder="e.g. John Smith" />
+              <input type="text" id="g2name" name="guest_2_name" />
             </div>
             <div class="field">
               <label for="g2email">Second guest&rsquo;s email</label>
-              <input type="email" id="g2email" name="guest_2_email" placeholder="them@example.com" />
+              <input type="email" id="g2email" name="guest_2_email" />
             </div>
             <div class="field">
               <label>Will they be joining us?</label>
@@ -133,7 +133,7 @@
             <!-- Guest 2's dietary needs - shown once they accept -->
             <div class="field" id="g2-diet" hidden>
               <label for="dietary2">Their dietary requirements or allergies</label>
-              <input type="text" id="dietary2" name="dietary_2" placeholder="e.g. vegetarian, nut allergy, or &lsquo;none&rsquo;" />
+              <input type="text" id="dietary2" name="dietary_2" placeholder="e.g. vegetarian, vegan, nut allergy" />
             </div>
           </div>
 
