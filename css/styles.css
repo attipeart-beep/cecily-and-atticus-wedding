@@ -573,7 +573,7 @@ body.lightbox-open { overflow: hidden; }
   align-items: stretch;
 }
 .radio-pill input { position: absolute; opacity: 0; }
-.radio-pill span {
+.radio-pill > span {
   display: flex;
   align-items: center;
   justify-content: center;
