@@ -218,15 +218,15 @@
       } else if (!anyAttending) {
         // Everyone responding has declined.
         msg = ack + (namesStr ? namesStr + ", we’re" : "We’re") +
-          " so sorry you can’t celebrate with us, and you’ll be very much missed.";
+          " so sorry you can’t celebrate with us, you’ll be missed.";
         if (ctaEl) ctaEl.style.display = "none";
       } else {
         // Mixed: one of a pair accepts, the other declines.
         var accepter = g1acc ? n1 : n2;
         var decliner = g1acc ? n2 : n1;
         msg = ack + (accepter || "You") +
-          ", we can’t wait to celebrate with you, and we’ll miss " +
-          (decliner || "your guest") + ".";
+          ", we can’t wait to celebrate with you! We’ll miss you " +
+          (decliner || "your guest") + "!";
         if (ctaEl) ctaEl.style.display = "";
       }
       if (msgEl) msgEl.textContent = msg;
