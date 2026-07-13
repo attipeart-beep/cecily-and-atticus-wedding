@@ -190,8 +190,46 @@
         });
     });
 
+    function valOf(name) {
+      var el = form.querySelector('[name="' + name + '"]');
+      return el ? el.value : "";
+    }
+
     function showSuccess() {
       var success = document.getElementById("rsvp-success");
+      var msgEl = document.getElementById("success-message");
+      var ctaEl = document.getElementById("success-cta");
+
+      var hasG2 = picked("has_guest_2") === "Yes";
+      var n1 = firstName(valOf("guest_1_name"));
+      var n2 = hasG2 ? firstName(valOf("guest_2_name")) : "";
+      var g1acc = picked("guest_1_attending") === "Joyfully Accept";
+      var g2acc = hasG2 && picked("guest_2_attending") === "Joyfully Accept";
+      var anyAttending = g1acc || g2acc;
+      var namesStr = [n1, n2].filter(Boolean).join(" & ");
+
+      var msg;
+      if (anyAttending && g1acc && (!hasG2 || g2acc)) {
+        // Everyone responding is coming.
+        msg = (namesStr ? namesStr + ", your" : "Your") +
+          " RSVP is in and we can’t wait to celebrate with you!";
+        if (ctaEl) ctaEl.style.display = "";
+      } else if (!anyAttending) {
+        // Everyone responding has declined.
+        msg = "Thank you for letting us know" + (namesStr ? ", " + namesStr : "") +
+          ". We’re so sorry you can’t be with us, and you’ll be very much missed. " +
+          "We’ll raise a glass to you on the day.";
+        if (ctaEl) ctaEl.style.display = "none";
+      } else {
+        // Mixed: one of a pair accepts, the other declines.
+        var accepter = g1acc ? n1 : n2;
+        var decliner = g1acc ? n2 : n1;
+        msg = (accepter || "You") + ", we can’t wait to celebrate with you! " +
+          "And we’ll miss " + (decliner || "your guest") + ".";
+        if (ctaEl) ctaEl.style.display = "";
+      }
+      if (msgEl) msgEl.textContent = msg;
+
       form.style.display = "none";
       if (success) {
         success.style.display = "block";
