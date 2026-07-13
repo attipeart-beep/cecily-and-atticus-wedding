@@ -91,7 +91,9 @@
       // Second-guest fields appear only if the guest is responding for two.
       var showG2 = picked("has_guest_2") === "Yes";
       if (guest2Fields) guest2Fields.hidden = !showG2;
-      form.querySelectorAll('#guest2-fields input[type="text"], #guest2-fields input[type="email"]')
+      // Only the name/email are required for a second guest — NOT the dietary
+      // field (which lives in the same block and can be hidden when declining).
+      form.querySelectorAll('input[name="guest_2_name"], input[name="guest_2_email"]')
         .forEach(function (i) { i.required = showG2; });
       form.querySelectorAll('input[name="guest_2_attending"]').forEach(function (i) { i.required = showG2; });
 
