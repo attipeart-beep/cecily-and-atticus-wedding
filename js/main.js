@@ -208,24 +208,25 @@
       var anyAttending = g1acc || g2acc;
       var namesStr = [n1, n2].filter(Boolean).join(" & ");
 
+      var ack = "Your RSVP has been received. ";
       var msg;
       if (anyAttending && g1acc && (!hasG2 || g2acc)) {
         // Everyone responding is coming.
-        msg = (namesStr ? namesStr + ", your" : "Your") +
-          " RSVP is in and we can’t wait to celebrate with you!";
+        msg = ack + (namesStr ? namesStr + ", we" : "We") +
+          " can’t wait to celebrate with you!";
         if (ctaEl) ctaEl.style.display = "";
       } else if (!anyAttending) {
         // Everyone responding has declined.
-        msg = "Thank you for letting us know" + (namesStr ? ", " + namesStr : "") +
-          ". We’re so sorry you can’t be with us, and you’ll be very much missed. " +
-          "We’ll raise a glass to you on the day.";
+        msg = ack + (namesStr ? namesStr + ", we’re" : "We’re") +
+          " so sorry you can’t be with us, and you’ll be very much missed.";
         if (ctaEl) ctaEl.style.display = "none";
       } else {
         // Mixed: one of a pair accepts, the other declines.
         var accepter = g1acc ? n1 : n2;
         var decliner = g1acc ? n2 : n1;
-        msg = (accepter || "You") + ", we can’t wait to celebrate with you! " +
-          "And we’ll miss " + (decliner || "your guest") + ".";
+        msg = ack + (accepter || "You") +
+          ", we can’t wait to celebrate with you, and we’ll miss " +
+          (decliner || "your guest") + ".";
         if (ctaEl) ctaEl.style.display = "";
       }
       if (msgEl) msgEl.textContent = msg;
