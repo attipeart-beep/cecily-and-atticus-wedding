@@ -218,7 +218,7 @@
       } else if (!anyAttending) {
         // Everyone responding has declined.
         msg = ack + (namesStr ? namesStr + ", we’re" : "We’re") +
-          " so sorry you can’t be with us, and you’ll be very much missed.";
+          " so sorry you can’t celebrate with us, and you’ll be very much missed.";
         if (ctaEl) ctaEl.style.display = "none";
       } else {
         // Mixed: one of a pair accepts, the other declines.
